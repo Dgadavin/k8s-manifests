@@ -20,3 +20,5 @@ spec:
               secretKeyRef:
                 name: nginx-secret
                 key: jwt_key
+      - name: redis
+        image: service/redis
