@@ -4,7 +4,7 @@ metadata:
   name: dns-record
 spec:
   endpoints:
-  - dnsName:nginx.local
+  - dnsName: nginx.local
     recordType: CNAME
     targets:
     - traefik-ext.itea.devopsology.org
