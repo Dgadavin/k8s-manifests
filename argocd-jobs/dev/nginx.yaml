@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-dev
+  namespace: default
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:Dgadavin/k8s-manifests.git
+    targetRevision: HEAD
+    path: nginx/kustomize/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated: {}

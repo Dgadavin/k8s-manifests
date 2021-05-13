@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  template:
+    spec:
+      containers:
+      - name: nginx
+        image: service/nginx
+        ports:
+          - containerPort: 80
+        env:
+          - name: DEBUG
+            value: "true"
+          - name: JWT_KEY
+            valueFrom:
+              secretKeyRef:
+                name: nginx-secret
+                key: jwt_key

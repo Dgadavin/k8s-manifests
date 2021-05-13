@@ -1,0 +1,22 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-route
+  annotations:
+    kubernetes.io/ingress.class: "traefik-ext-dev"
+spec:
+  routes:
+  - kind: Rule
+    match: Host(`app.itea.devopsology.org`)
+    priority: 10
+    services:
+    - kind: Service
+      name: nginx-svc
+      namespace: default
+      passHostHeader: true
+      port: 80
+      responseForwarding:
+        flushInterval: 1ms
+      scheme: http
+      strategy: RoundRobin
+      weight: 10
